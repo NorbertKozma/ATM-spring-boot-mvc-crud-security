@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/appUser.js}" defer></script>
+
+    <title>Bank Automata User Menu</title>
+</head>
+<body>
+
+<div class="main">
+
+    <div class="display">
+        <p id="messageBox"></p>
+        <p id="textBox"></p>
+        <div id="btn-text">
+            <p id="green-text"></p>
+            <p id="yellow-text"></p>
+            <p id="red-text"></p>
+        </div>
+    </div>
+
+    <div class="btns">
+        <div class="btn-row">
+            <button class="btn" th:onclick="btnPush(1)">1</button>
+            <button class="btn" th:onclick="btnPush(2)">2</button>
+            <button class="btn" th:onclick="btnPush(3)">3</button>
+            <button class="btn" id="btn-green">B</button>
+        </div>
+        <div class="btn-row">
+            <button class="btn" th:onclick="btnPush(4)">4</button>
+            <button class="btn" th:onclick="btnPush(5)">5</button>
+            <button class="btn" th:onclick="btnPush(6)">6</button>
+            <button class="btn" id="btn-yellow">B</button>
+        </div>
+        <div class="btn-row">
+            <button class="btn" th:onclick="btnPush(7)">7</button>
+            <button class="btn" th:onclick="btnPush(8)">8</button>
+            <button class="btn" th:onclick="btnPush(9)">9</button>
+            <button class="btn" id="btn-red">B</button>
+        </div>
+        <div class="btn-row">
+            <button class="btn">+</button>
+            <button class="btn" th:onclick="btnPush(0)">0</button>
+            <button class="btn">#</button>
+        </div>
+    </div>
+
+    <!-- Műveleti gombok -->
+    <!--<input type="hidden" name="amount" id="amountField">
+    <button onclick="submitDeposit()" hidden>Deposit</button> -->
+
+    <!--<form id="amountForm" th:action="@{/users/deposit}" method="post">
+        <input type="hidden" name="amount" id="amountField">
+        <button type="submit" id="submitButton" style="display: none;">Login</button>
+    </form> -->
+</div>
+
+</body>
+</html>
+
+
+<!--<script type="text/javascript" th:src="@{/js/app.js}"></script>-->
