@@ -3,7 +3,7 @@ package com.nor2code.springboot.thymeleafdemo.entity;
 import jakarta.persistence.*;
 
 @Entity //egy annotáció a Spring Boot + JPA (Java Persistence API) világában, amely azt jelenti, hogy az adott Java osztály egy adatbázisbeli tábla reprezentációja lesz.
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     // define fields
