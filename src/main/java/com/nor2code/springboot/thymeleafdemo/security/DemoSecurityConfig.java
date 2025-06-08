@@ -39,7 +39,7 @@ public class DemoSecurityConfig {
 
             http.authorizeHttpRequests(configuer ->
                         configuer
-                                .requestMatchers("https://atm-spring-boot-mvc-crud-security-production.up.railway.app/showMyLoginPage","/","/css/**", "/js/**").permitAll() // A /css és /js mappákban található fájlok mindenki számára elérhetők.
+                                .requestMatchers("/showMyLoginPage","/","/css/**", "/js/**").permitAll() // A /css és /js mappákban található fájlok mindenki számára elérhetők.
                                 //.requestMatchers("/").hasRole("EMPLOYEE") // Ezeket az útvonalakat csak az EMPLOYEE szereppel rendelkező felhasználók érhetik el.
                                 .requestMatchers("/users/deposit").hasRole("EMPLOYEE")
                                 .requestMatchers("/users/withdraw").hasRole("EMPLOYEE")
@@ -50,14 +50,14 @@ public class DemoSecurityConfig {
                 )
                 .formLogin(form -> // Beléptetés (form alapú)
                         form
-                                .loginPage("https://atm-spring-boot-mvc-crud-security-production.up.railway.app/showMyLoginPage") // Saját belépési oldal: a /showMyLoginPage-re irányít.
+                                .loginPage("/showMyLoginPage") // Saját belépési oldal: a /showMyLoginPage-re irányít.
                                 .loginProcessingUrl("/authenticateTheUser") // Ez az URL fogadja a POST kérést (jelszó + felhasználónév), automatikusan elintézi a hitelesítést.
                                 // .defaultSuccessUrl("/users/list", true)
                                 .successHandler(successHandler) // Saját sikerkezelőt használunk – pl. szerepkör alapján eltérő URL-re dobhat.
                                 .permitAll() // A bejelentkezési oldal bárki számára elérhető.
                 )
                 .logout(logout -> logout.permitAll() // A kijelentkezés mindenki számára engedélyezett.
-                .logoutSuccessUrl("https://atm-spring-boot-mvc-crud-security-production.up.railway.app/showMyLoginPage") // Kijelentkezés után ide visz
+                .logoutSuccessUrl("/showMyLoginPage") // Kijelentkezés után ide visz
                 .permitAll()
                 )
                 .exceptionHandling(configurer ->
