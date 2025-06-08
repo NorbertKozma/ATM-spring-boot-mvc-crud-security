@@ -108,7 +108,7 @@ function btnPush(n) //HTML-ben hívódik meg: onclick 1-9
         //console.log(numString);
 
     }
-/*
+
     if(!firstPhase && customer && !isDeposit && !isWithdraw) {
         messageBox.innerHTML = responseMessage;
         if(!responseMessage.includes("Pin")) { //Please enter pin code.
@@ -129,7 +129,7 @@ function btnPush(n) //HTML-ben hívódik meg: onclick 1-9
             btnRed.addEventListener("click", refresh);
         }
 
-    }*/
+    }
 
     if(!firstPhase && !customer && !isDeposit && !isWithdraw) {
             messageBox.innerHTML = responseMessage;

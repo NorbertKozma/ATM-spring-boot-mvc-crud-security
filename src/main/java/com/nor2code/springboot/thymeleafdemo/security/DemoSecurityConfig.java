@@ -57,7 +57,7 @@ public class DemoSecurityConfig {
                                 .permitAll() // A bejelentkezési oldal bárki számára elérhető.
                 )
                 .logout(logout -> logout.permitAll() // A kijelentkezés mindenki számára engedélyezett.
-                .logoutSuccessUrl("/showMyLoginPage") // Kijelentkezés után ide visz
+                .logoutSuccessUrl("https://atm-spring-boot-mvc-crud-security-production.up.railway.app/showMyLoginPage") // Kijelentkezés után ide visz
                 .permitAll()
                 )
                 .exceptionHandling(configurer ->

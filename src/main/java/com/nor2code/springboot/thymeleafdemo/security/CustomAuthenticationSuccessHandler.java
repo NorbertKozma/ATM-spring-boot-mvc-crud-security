@@ -20,7 +20,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         // Szerepkör lekérdezése, Lekéri a belépett felhasználó szerepköreit (jogosultságait), amik GrantedAuthority objektumokként vannak tárolva.
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-        String redirectURL = "/"; // Alapértelmezett átirányítási URL beállítása a gyökér (/) oldalra.
+        String redirectURL = "/showMyLoginPage"; // Alapértelmezett átirányítási URL beállítása a gyökér (/) oldalra.
 
         for (GrantedAuthority authority : authorities) { // Végigiterálunk a felhasználó szerepkörein.
             String role = authority.getAuthority(); // A getAuthority() visszaadja a szerepkör nevét, pl. "ROLE_ADMIN", "ROLE_EMPLOYEE".
