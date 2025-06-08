@@ -327,7 +327,7 @@ function logout() {
                 if (response.redirected) {
                     window.location.href = response.url;
                 } else {
-                    window.location.href = "/";
+                    window.location.href = window.location.origin + "/";
                 }
             }, 3000);
             // Átirányítás kézzel
