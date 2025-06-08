@@ -332,7 +332,7 @@ function logout() {
             }, 3000); */
             // Átirányítás kézzel
                 setTimeout(() => {
-                    window.location.href = "https://atm-spring-boot-mvc-crud-security-production.up.railway.app/showMyLoginPage"; // ← ez a kulcs!
+                    window.location.href = "/showMyLoginPage"; // ← ez a kulcs!
                 }, 3000);
         }).catch(error => {
             console.error("There was an error on exit:", error);
