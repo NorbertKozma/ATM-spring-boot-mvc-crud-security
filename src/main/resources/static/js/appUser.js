@@ -323,17 +323,17 @@ function logout() {
 
 
             // 3 másodperc múlva navigálunk
-           /* setTimeout(() => {
+            setTimeout(() => {
                 if (response.redirected) {
                     window.location.href = response.url;
                 } else {
                     window.location.href = "/";
                 }
-            }, 3000); */
+            }, 3000);
             // Átirányítás kézzel
-                setTimeout(() => {
+             /*   setTimeout(() => {
                     window.location.href = "/showMyLoginPage"; // ← ez a kulcs!
-                }, 3000);
+                }, 3000);*/
         }).catch(error => {
             console.error("There was an error on exit:", error);
         });

@@ -39,7 +39,7 @@ public class DemoSecurityConfig {
 
             http.authorizeHttpRequests(configuer ->
                         configuer
-                                .requestMatchers("/showMyLoginPage","/","/css/**", "/js/**").permitAll() // A /css és /js mappákban található fájlok mindenki számára elérhetők.
+                                .requestMatchers("/","/css/**", "/js/**").permitAll() // A /css és /js mappákban található fájlok mindenki számára elérhetők.
                                 //.requestMatchers("/").hasRole("EMPLOYEE") // Ezeket az útvonalakat csak az EMPLOYEE szereppel rendelkező felhasználók érhetik el.
                                 .requestMatchers("/users/deposit").hasRole("EMPLOYEE")
                                 .requestMatchers("/users/withdraw").hasRole("EMPLOYEE")
@@ -57,7 +57,7 @@ public class DemoSecurityConfig {
                                 .permitAll() // A bejelentkezési oldal bárki számára elérhető.
                 )
                 .logout(logout -> logout.permitAll() // A kijelentkezés mindenki számára engedélyezett.
-                .logoutSuccessUrl("/showMyLoginPage") // Kijelentkezés után ide visz
+                .logoutSuccessUrl("/") // Kijelentkezés után ide visz
                 .permitAll()
                 )
                 .exceptionHandling(configurer ->

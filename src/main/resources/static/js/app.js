@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () { // Ez egy biztonság
 
         // 3 másodperc után eltüntetjük az ?error paramétert az URL-ből
        setTimeout(function () {
-                   window.location.href = "/showMyLoginPage";
+                   window.location.href = "/";
                }, 3000);
     }
 });

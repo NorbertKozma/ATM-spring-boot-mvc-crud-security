@@ -286,7 +286,7 @@ function logout() {
                 if (response.redirected) {
                     window.location.href = response.url;
                 } else {
-                    window.location.href = "/showMyLoginPage";
+                    window.location.href = "/";
                 }
 
                 // szám gombok aktiválása
