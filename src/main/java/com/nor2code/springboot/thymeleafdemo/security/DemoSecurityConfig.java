@@ -57,6 +57,8 @@ public class DemoSecurityConfig {
                                 .permitAll() // A bejelentkezési oldal bárki számára elérhető.
                 )
                 .logout(logout -> logout.permitAll() // A kijelentkezés mindenki számára engedélyezett.
+                .logoutSuccessUrl("/") // Kijelentkezés után ide visz
+                .permitAll()
                 )
                 .exceptionHandling(configurer ->
                         configurer.accessDeniedPage("/access-denied") // Ha egy jogosulatlan felhasználó próbál elérni valamit, a rendszer a /access-denied oldalra dobja.
