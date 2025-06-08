@@ -333,7 +333,6 @@ function logout() {
             // Átirányítás kézzel
                 setTimeout(() => {
                     window.location.href = "/showMyLoginPage"; // ← ez a kulcs!
-                    window.location.reload();
                 }, 3000);
         }).catch(error => {
             console.error("There was an error on exit:", error);
