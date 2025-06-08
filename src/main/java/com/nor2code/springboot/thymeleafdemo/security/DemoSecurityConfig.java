@@ -39,7 +39,7 @@ public class DemoSecurityConfig {
 
             http.authorizeHttpRequests(configuer ->
                         configuer
-                                .requestMatchers("/showMyLoginPage","/","/css/**", "/js/**").permitAll() // A /css és /js mappákban található fájlok mindenki számára elérhetők.
+                                .requestMatchers("https://atm-spring-boot-mvc-crud-security-production.up.railway.app/showMyLoginPage","/","/css/**", "/js/**").permitAll() // A /css és /js mappákban található fájlok mindenki számára elérhetők.
                                 //.requestMatchers("/").hasRole("EMPLOYEE") // Ezeket az útvonalakat csak az EMPLOYEE szereppel rendelkező felhasználók érhetik el.
                                 .requestMatchers("/users/deposit").hasRole("EMPLOYEE")
                                 .requestMatchers("/users/withdraw").hasRole("EMPLOYEE")
@@ -50,7 +50,7 @@ public class DemoSecurityConfig {
                 )
                 .formLogin(form -> // Beléptetés (form alapú)
                         form
-                                .loginPage("/showMyLoginPage") // Saját belépési oldal: a /showMyLoginPage-re irányít.
+                                .loginPage("https://atm-spring-boot-mvc-crud-security-production.up.railway.app/showMyLoginPage") // Saját belépési oldal: a /showMyLoginPage-re irányít.
                                 .loginProcessingUrl("/authenticateTheUser") // Ez az URL fogadja a POST kérést (jelszó + felhasználónév), automatikusan elintézi a hitelesítést.
                                 // .defaultSuccessUrl("/users/list", true)
                                 .successHandler(successHandler) // Saját sikerkezelőt használunk – pl. szerepkör alapján eltérő URL-re dobhat.
