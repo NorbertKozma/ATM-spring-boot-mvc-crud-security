@@ -56,6 +56,47 @@ public class UserController {
 
     @PostMapping("/deposit")
     @ResponseBody
+    public ResponseEntity<String> deposit(@Valid @RequestBody DepositRequest request, Principal principal) {
+        if (principal == null || principal.getName() == null) {
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
+
+        User theUser = userService.findById(principal.getName());
+        if (theUser == null) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+        int depositAmount = request.getAmount();
+        theUser.setAmount(theUser.getAmount() + depositAmount);
+
+        try {
+            userService.save(theUser);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error saving deposit", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        BigDecimal rate;
+        try {
+            rate = exchangeRateService.getHufToEurRate();
+        } catch (Exception e) {
+            rate = BigDecimal.ZERO;
+        }
+
+        BigDecimal eurBalance = BigDecimal.valueOf(theUser.getAmount())
+                .multiply(rate)
+                .setScale(2, RoundingMode.HALF_UP);
+
+        String responseMessage = "Your new balance is:\n\n" + FormatUtils.formatAmount(theUser.getAmount(), 0) + " HUF\n\n";
+        responseMessage += (rate.compareTo(BigDecimal.ZERO) != 0)
+                ? FormatUtils.formatAmount(eurBalance, 2) + " EUR"
+                : "\nEUR balance:\nError when querying the exchange rate";
+
+        return new ResponseEntity<>(responseMessage, HttpStatus.OK);
+    }
+
+    /* régi
+    @PostMapping("/deposit")
+    @ResponseBody
     public ResponseEntity<String> deposit(@Valid @RequestBody DepositRequest request, Model theModel, Principal principal) {
 
         User theUser = userService.findById(principal.getName());
@@ -82,7 +123,7 @@ public class UserController {
 
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }
-
+*/
     @PostMapping("/withdraw")
     @ResponseBody
     public ResponseEntity<String> withdrawal(@Valid @RequestBody WithdrawRequest request, Model theModel, Principal principal) {
