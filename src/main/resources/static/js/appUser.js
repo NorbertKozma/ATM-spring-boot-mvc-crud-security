@@ -180,6 +180,64 @@ const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('con
 const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 
 function submitDeposit() {
+    resetEventListeners();
+
+    const amount = amountOfMoney;
+
+    fetch('/users/deposit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ amount: amount })
+    })
+    .then(async response => {
+        if (!response.ok) {
+            const contentType = response.headers.get("Content-Type");
+            let errorMessage = "Unknown error.";
+
+            if (contentType && contentType.includes("application/json")) {
+                try {
+                    const data = await response.json();
+                    errorMessage = data.errors?.[0]?.defaultMessage || errorMessage;
+                } catch (e) {
+                    console.warn("Failed to parse JSON error response:", e);
+                }
+            } else {
+                try {
+                    const text = await response.text();
+                    if (text) errorMessage = text;
+                } catch (e) {
+                    console.warn("Failed to parse text error response:", e);
+                }
+            }
+
+            document.getElementById("messageBox").innerText = errorMessage;
+            setTimeout(showHomeMenu, 3000);
+            return;
+        }
+
+        // Sikeres válasz (text/plain)
+        const successMessage = await response.text();
+        document.getElementById("messageBox").innerText = successMessage;
+        setTimeout(logout, 3000);
+    })
+    .catch(error => {
+        console.error("Fetch error:", error);
+        document.getElementById("messageBox").innerText = "Network or server error.";
+        setTimeout(showHomeMenu, 3000);
+    });
+
+    // Szövegdobozok törlése
+    textBox.innerHTML = "";
+    redText.innerHTML = "";
+    yellowText.innerHTML = "";
+    greenText.innerHTML = "";
+}
+
+/*
+function submitDeposit() {
     //btnRed.removeEventListener("click", refresh);
     //console.log("submitDeposit()");
     //const amount = parseInt(document.getElementById("amountField").value);
@@ -190,7 +248,7 @@ function submitDeposit() {
         method: 'POST', // A HTTP metódus POST, tehát adatot küld a szervernek.
         headers: {
             'Content-Type': 'application/json', // JSON adatküldés
-                                    [csrfHeader]: csrfToken // Hozzáadja a CSRF tokent, hogy a Spring Security ne dobjon hibát a védelem miatt.
+             [csrfHeader]: csrfToken // Hozzáadja a CSRF tokent, hogy a Spring Security ne dobjon hibát a védelem miatt.
         },
         body: JSON.stringify({amount: amount}) // A amount értéket JSON objektummá alakítja, amit a szerver értelmezni tud ({ "amount": 5000 } pl.).
             })
@@ -210,14 +268,14 @@ function submitDeposit() {
             .then(data => {
                 document.getElementById("messageBox").innerText = data;
                 setTimeout(logout, 3000);*/
-    });
+  /*  });
     textBox.innerHTML = ""; // Kiüríti a különböző színes szövegeket
     redText.innerHTML = "";
     yellowText.innerHTML = "";
     greenText.innerHTML = "";
 
 }
-
+*/
 /*
 function submitDeposit() {
     console.log("submitDeposit()");
