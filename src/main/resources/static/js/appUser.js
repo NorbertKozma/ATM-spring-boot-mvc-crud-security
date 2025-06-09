@@ -302,6 +302,64 @@ function submitDeposit() {
 
 function submitWithdraw() {
     resetEventListeners();
+
+    const amount = amountOfMoney;
+
+    fetch('/users/withdraw', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            [csrfHeader]: csrfToken
+        },
+        body: JSON.stringify({ amount: amount })
+    })
+    .then(async response => {
+        if (!response.ok) {
+            const contentType = response.headers.get("Content-Type");
+            let errorMessage = "Unknown error.";
+
+            if (contentType && contentType.includes("application/json")) {
+                try {
+                    const data = await response.json();
+                    errorMessage = data.errors?.[0]?.defaultMessage || errorMessage;
+                } catch (e) {
+                    console.warn("Failed to parse JSON error response:", e);
+                }
+            } else {
+                try {
+                    const text = await response.text();
+                    if (text) errorMessage = text;
+                } catch (e) {
+                    console.warn("Failed to parse text error response:", e);
+                }
+            }
+
+            document.getElementById("messageBox").innerText = errorMessage;
+            setTimeout(showHomeMenu, 3000);
+            return;
+        }
+
+        // Sikeres válasz (text/plain)
+        const successMessage = await response.text();
+        document.getElementById("messageBox").innerText = successMessage;
+        setTimeout(logout, 3000);
+    })
+    .catch(error => {
+        console.error("Fetch error:", error);
+        document.getElementById("messageBox").innerText = "Network or server error.";
+        setTimeout(showHomeMenu, 3000);
+    });
+
+    // Színes szövegdobozok törlése
+    textBox.innerHTML = "";
+    redText.innerHTML = "";
+    yellowText.innerHTML = "";
+    greenText.innerHTML = "";
+}
+
+/* régi
+function submitWithdraw() {
+    resetEventListeners();
     //const amount = parseInt(document.getElementById("amountField").value);
     const amount = amountOfMoney;
     console.log(amount);
@@ -329,7 +387,7 @@ function submitWithdraw() {
     redText.innerHTML = "";
     yellowText.innerHTML = "";
     greenText.innerHTML = "";
-}
+} */
 
 /*
 function submitWithdraw() {
