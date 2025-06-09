@@ -264,7 +264,9 @@ function logout() {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 [csrfHeader]: csrfToken
-            }
+            },
+            credentials: 'include', // fontos, hogy a session cookie is menjen!
+            redirect: "manual" // vagy "follow" - kísérletezhetsz
         }).then(response => {
             // Megjelenítjük az üzenetet
             document.getElementById("messageBox").innerText = "Successful logout";
@@ -286,7 +288,7 @@ function logout() {
                 if (response.redirected) {
                     window.location.href = response.url;
                 } else {
-                    window.location.href = "/";
+                    window.location.href = window.location.origin + "/";
                 }
 
                 // szám gombok aktiválása
