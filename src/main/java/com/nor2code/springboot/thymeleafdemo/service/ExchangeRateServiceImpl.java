@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
+//import org.springframework.web.reactive.function.client.WebClient;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -15,7 +15,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService{
     // A RestTemplate egyszerűbb és elterjedtebb a szinkron HTTP hívásokhoz, egyszerű, szinkron HTTP kliens osztálya, Ezzel fog majd REST API-t hívni.
     private final RestTemplate restTemplate = new RestTemplate();
 
-/*    @Override
+    @Override
     public BigDecimal getHufToEurRate() { // A visszatérési érték típusa BigDecimal, amely pontos számításokra alkalmas (pl. pénzügyi adatoknál).
        String url = "https://api.frankfurter.app/latest?from=HUF&to=EUR"; // Meghatároz egy URL-t, amely egy nyilvános árfolyam API végpont.
 
@@ -44,8 +44,8 @@ public class ExchangeRateServiceImpl implements ExchangeRateService{
 
 
         return BigDecimal.ZERO;
-    } */
-
+    }
+/*
     // WebClient
     private final WebClient webClient = WebClient.create("https://api.frankfurter.app");
 
@@ -80,5 +80,5 @@ public class ExchangeRateServiceImpl implements ExchangeRateService{
         }
 
         return BigDecimal.ZERO;
-    }
+    }*/
 }
