@@ -1,13 +1,13 @@
 package com.nor2code.springboot.thymeleafdemo;
 
-import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
+//import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Collections;
 
 @SpringBootApplication
-@EnableEncryptableProperties
+//@EnableEncryptableProperties
 public class ThymeleafdemoApplication {
 
 	public static void main(String[] args) {
