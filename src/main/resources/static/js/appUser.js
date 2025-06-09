@@ -193,6 +193,13 @@ function submitDeposit() {
         body: JSON.stringify({ amount: amount })
     })
     .then(async response => {
+
+        if (response.status === 302) {
+                document.getElementById("messageBox").innerText = "Session expired. Please log in again.";
+                setTimeout(() => window.location.href = "/showMyLoginPage", 2000);
+                return;
+            }
+
         if (!response.ok) {
             const contentType = response.headers.get("Content-Type");
             let errorMessage = "Unknown error.";
