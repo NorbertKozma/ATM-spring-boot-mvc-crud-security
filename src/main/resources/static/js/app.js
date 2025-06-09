@@ -296,3 +296,11 @@ document.addEventListener("DOMContentLoaded", function () { // Ez egy biztonság
                }, 3000);
     }
 });
+
+// Szerver wake-up hívás az oldal teljes betöltődése után
+window.addEventListener('load', () => {
+    fetch('/api/ping')
+        .then(response => response.text())
+        .then(data => console.log('Wakeup response:', data))
+        .catch(error => console.error('Wakeup error:', error));
+});

@@ -39,7 +39,7 @@ public class DemoSecurityConfig {
 
             http.authorizeHttpRequests(configuer ->
                         configuer
-                                .requestMatchers("/","/css/**", "/js/**").permitAll() // A /css és /js mappákban található fájlok mindenki számára elérhetők.
+                                .requestMatchers("/health","/api/ping","/","/css/**", "/js/**").permitAll() // A /css és /js mappákban található fájlok mindenki számára elérhetők.
                                 //.requestMatchers("/").hasRole("EMPLOYEE") // Ezeket az útvonalakat csak az EMPLOYEE szereppel rendelkező felhasználók érhetik el.
                                 .requestMatchers("/users/deposit").hasRole("EMPLOYEE")
                                 .requestMatchers("/users/withdraw").hasRole("EMPLOYEE")
