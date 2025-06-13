@@ -160,7 +160,7 @@ buildNumber.properties
 #application.yml
 
 ### MySQL ###
-*.sql
+#*.sql
 *.dump
 
 ### Logs ###
