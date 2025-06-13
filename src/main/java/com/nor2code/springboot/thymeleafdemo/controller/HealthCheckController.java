@@ -19,7 +19,7 @@ public class HealthCheckController {
         this.startupTime = Instant.now();
     }
 
-    @GetMapping("/health")
+    @GetMapping("/")
     public ResponseEntity<String> healthCheck() {
         logger.info("Health check requested at {}", Instant.now());
         String status = "Application is healthy. Startup time: " + startupTime.toString();
