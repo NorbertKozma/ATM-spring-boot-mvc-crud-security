@@ -1,4 +1,4 @@
-# ATM Webalkalmazás
+# ATM REST API valutaárfolyam integrációval
 
 Ez egy Java Spring Boot alapú webalkalmazás, amely lehetővé teszi a felhasználók számára, hogy regisztráljanak, bejelentkezzenek, befizessenek, pénzt vegyenek fel, és figyeljék az egyenlegüket.
 
